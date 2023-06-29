@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Create blog{% endblock title %}
+
+{% block body %}
+<div class= "container align-items-center  card bg-dark p-5">
+
+    {% for message in messages %}
+  
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  <br><br><br>
+    
+    <h3 class="text-light">Create Blog</h3>
+  
+    <form action="create_blog" method="post" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <br />
+      <label for="name">Blog Name</label>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control p-2"
+          id="name"
+          name="Blog_name"
+          placeholder="Blog Name"
+          required
+        />
+        <label for="name">Author Name</label>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control p-2"
+            id="author"
+            name="Author_name"
+            placeholder="Author Name"
+            required
+          />
+          <br>
+          <small class="text-light">Create your content more than 250 alphabetic letters.</small>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Blog content</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="Blog_content" placeholder="Enter your content" rows="3"></textarea>
+          </div>
+
+
+          <br>
+          <small class="text-light">Rate your star out of 5.</small>
+  
+          <label for="text">Stars</label>
+          <div class="form-group">
+            <select class="form-control" name="stars" id="stars">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                
+            </select>
+
+          </div>
+
+  
+      <div class="mb-3">
+        <label for="formFile"  class="form-label">Upload Image</label>
+        <input class="form-control" type="file" name="photo_image" id="formFile">
+      </div>
+      
+      
+      
+      
+     
+    
+      <br />
+      <button type="submit" class="align-items-center btn btn-danger">Create blog</button>
+  
+      <br />
+      <br />
+      
+      <br />
+          <br />
+    </form>
+  </div>
+  
+{% endblock body %}
+  

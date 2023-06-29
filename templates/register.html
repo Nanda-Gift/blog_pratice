@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Register{% endblock title %}
+
+{% block body %}
+<div class= "container align-items-center  card bg-dark p-5">
+
+    {% for message in messages %}
+  
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  <br><br><br>
+    
+    <h3 class="text-light">Register</h3>
+  
+    <form action="register" method="post">
+      {% csrf_token %}
+      <br />
+      <label for="name">Name</label>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control p-2"
+          id="name"
+          name="name"
+          placeholder="Name"
+          required
+        />
+  
+      <label for="email">Email</label>
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control p-2"
+          id="email"
+          name="email"
+          placeholder="Email address"
+          required
+        />
+      </div>
+      <label for="pass1">Password</label>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control p-2"
+          id="pass1"
+          name="pass1"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <br>
+      <small class="text-light">Password must include atleast [1-9][a-z][A-z][_$@]& 5 characters</small>
+    <br>
+      <label for="pass2">Confirm Password</label>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control p-2"
+          id="pass2"
+          name="pass2"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+     
+    
+      <br />
+      <button type="submit" class="align-items-center btn btn-danger">Register</button>
+  
+      <br />
+      <br />
+      <h6 class="text-light">
+      Already User?</h6> <h3><a href="login">Login</a></h3>
+      <br />
+          <br />
+    </form>
+  </div>
+  
+{% endblock body %}
+  

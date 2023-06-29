@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+  <div class="container mt-2">
+  <h1 class="text-center">Blog Page</h1>
+  {% for c in blogs %}
+    <div class="row">    
+        
+      <div class="col-md-3">
+      <div class="card ml-3">
+          <img src="{{c.photo_image}}" id="card-img" class="card-img-top p-3" alt="not found">
+          <div class="card-body">
+            <h3 class="card-title">{{c.Blog_name}} </h3>
+            <p class="card-text"> <b>{{c.Author_name}}</b></b> </p>
+
+            
+
+             {{c.stars}}<i class="fa-regular fa-star"></i>
+                   
+            
+            <a href="know/{{c.Blog_Id}}" class="btn btn-outline-dark">More details</a>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+  
+
+
+
+
+
+
+{% endblock body %}
