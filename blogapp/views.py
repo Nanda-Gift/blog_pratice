@@ -29,10 +29,10 @@ def register(request):
        
         if password!=confirm_password:
             messages.warning(request,"Password is Not Matching")
-            return redirect('/auth/signup/') 
+            return redirect('register') 
         if len(password)<=5:
             messages.warning(request,"Password must be atleast 5 character")
-            return redirect('/auth/signup/') 
+            return redirect('register') 
         elif not re.search("[a-z]", password):
             flag = -1
             
@@ -50,7 +50,7 @@ def register(request):
             try:
                 if User.objects.get(username=email):
                     messages.info(request,"Email is Taken")
-                    return redirect('/auth/signup/') 
+                    return redirect('register') 
 
 
             except Exception as identifier:
