@@ -41,14 +41,7 @@
         {{c.Blog_content | safe}}
     </div>
 </div>
-    {% if user.is_authenticated %}
-        {% if user.id == blogcont.Blog_Id.user.id %}
-        
-            <h3><a href="delete/{{data.Blog_Id}}" class="btn btn-primary"> Delete</a></h3> 
-            <h3><a href="blog_update/{{data.Blog_Id}}" class="btn btn-primary"> Update</a></h3>
-        
-        {% endif %}
-    {% endif %}
+
 
 </div>
 

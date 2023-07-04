@@ -118,7 +118,7 @@ def blog_update(request,id):
         edit.stars=stars
         edit.save()
         messages.info(request,"Updates Successfully...")
-        return redirect("know")
+        return redirect("/")
     
     return render(request,"update.html",context)
 

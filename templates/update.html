@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+
 
 
 {% block title %}Update Blog{% endblock title %}
@@ -14,7 +14,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
-  <br><br><br>
+  <br>
 
 
     
@@ -30,7 +30,7 @@
           class="form-control p-2"
           id="name"
           name="Blog_name"
-          value="{{d.Blog_name}}"
+          value="{{data.Blog_name}}"
           placeholder="Blog Name"
           required
         />
