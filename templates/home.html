@@ -23,7 +23,7 @@
                    
             
             <a href="know/{{c.Blog_Id}}" class="btn btn-outline-dark">More details</a>
-            {% if user.id != blogcont.Blog_Id.user.id %} 
+            {% if user.id == blogcont.Blog_Id.user.id %} 
                  <h3><a href="delete/{{c.Blog_Id}}" class="btn btn-primary"> Delete</a></h3> 
             <h3><a href="blog_update/{{c.Blog_Id}}" class="btn btn-primary"> Update</a></h3>
            {% endif %}
