@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Search{% endblock title %}
+
+
+{% block body %}
+
+
+<div class="container mt-2">
+    <h1 class="text-center">Search results</h1>
+    {% for message in messages %}
+
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+     {% endfor %}
+
+
+    {% if allPosts|length < 1%}
+
+      Your Search <b>{{query}} did not match</b>
+     <ul>
+      <li>Make Sure You have Spelled Correct</li>
+      </ul>
+    {% endif %}
+
+
+    <div class="row">
+        
+    
+        {% for c in allPosts %}
+
+        <div class="row">    
+        
+            <div class="col-md-3">
+            <div class="card ml-3">
+                <img src="{{c.photo_image}}" id="card-img" class="card-img-top p-3" alt="not found">
+                <div class="card-body">
+                  <h3 class="card-title">{{c.Blog_name}} </h3>
+                  <p class="card-text"> <b>{{c.Author_name}}</b></b> </p>
+                  <a href="know/{{c.Blog_Id}}" class="btn btn-outline-dark">More details</a>
+      
+                                    
+                  
+                </div>
+              </div>
+            </div>
+        <div>
+      
+         <!-- {% if user.is_authenticated %} -->
+          
+            
+            <!--  -->
+         <!-- {% endif %} -->
+        </div>
+  
+    
+        {% endfor %}  
+    
+    </div> 
+    
+    </div>
+    
+
+{% endblock body %}

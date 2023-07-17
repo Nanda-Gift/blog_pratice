@@ -10,6 +10,7 @@ urlpatterns = [
         path('know/<id>',views.know,name="know"),
         path('blog_update/<id>',views.blog_update,name='blog_update'),
         path('delete/<id>',views.delete,name='delete'),
+        path('search',views.search,name='search'),
 
 
         

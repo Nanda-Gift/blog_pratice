@@ -3,17 +3,17 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import auth
-from blogapp.models import blogcont
+from blogapp.models import blogconts
 import re
 
 # Create your views here.
 def home(request):
-    blogs = blogcont.objects.all()
+    blogs = blogconts.objects.all()
     context={'blogs':blogs}
     return render(request,"home.html",context)
 
 def know(request,id):
-    blog = blogcont.objects.filter(Blog_Id=id)
+    blog = blogconts.objects.filter(Blog_Id=id)
     context={'blog': blog}
     return render(request,'know.html',context)
 
@@ -91,16 +91,17 @@ def create_blog(request):
                 photo_image=request.FILES.get('photo_image')
                 Author_name=request.POST.get('Author_name')
                 Blog_content=request.POST.get('Blog_content')
-                stars=request.POST.get('stars')             
+                stars=request.POST.get('stars')  
+                created_by=request.POST.get('created_by')           
 
-                query= blogcont(Blog_name=Blog_name,photo_image=photo_image,Author_name=Author_name,Blog_content=Blog_content,stars=stars)
+                query= blogconts(Blog_name=Blog_name,created_by=created_by,photo_image=photo_image,Author_name=Author_name,Blog_content=Blog_content,stars=stars)
                 query.save()
                 return redirect('/')
 
     return render(request,'create.html')
 
 def blog_update(request,id):
-    data=blogcont.objects.get(Blog_Id=id) 
+    data=blogconts.objects.get(Blog_Id=id) 
     context={"data":data}
 
     if request.method=="POST":
@@ -110,7 +111,7 @@ def blog_update(request,id):
         Blog_content=request.POST.get('Blog_content')
         stars=request.POST.get('stars')
 
-        edit=blogcont.objects.get(Blog_Id=id)
+        edit=blogconts.objects.get(Blog_Id=id)
         edit.Blog_name=Blog_name
         edit.photo_image=photo_image
         edit.Author_name=Author_name
@@ -123,9 +124,20 @@ def blog_update(request,id):
     return render(request,"update.html",context)
 
 def delete(request,id):
-    erase=blogcont.objects.get(Blog_Id=id)
+    erase=blogconts.objects.get(Blog_Id=id)
     erase.delete()
     messages.info(request,"deleted successfully")
     return redirect('/')
 
+
+def search(request):
+    query=request.GET['search']
+    if len(query)>100:
+        allPosts=blogconts.objects.none()
+    else:
+        allPosts=blogconts.objects.filter(Blog_name__icontains=query)
+    if allPosts.count()==0:
+        messages.warning(request,"No Search Results")
+    params={'allPosts':allPosts,'query':query}
+    return render(request,"search.html",params)
         
